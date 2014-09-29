@@ -1,0 +1,62 @@
+---------------------------------------------------------------------------
+Per crare il DataBase
+---------------------------------------------------------------------------
+CREATE DATABASE `ninux_rate` /*!40100 DEFAULT CHARACTER SET latin1 */;
+
+------------------------------------------------------------------------
+ Per Creare la tabella dati
+------------------------------------------------------------------------
+CREATE TABLE `dati` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `id_nodo` int(11) NOT NULL,
+  `interface` varchar(4) NOT NULL,
+  `byte_in` int(20) NOT NULL,
+  `byte_out` int(20) NOT NULL,
+  `tic_time` bigint(20) NOT NULL,
+  `byte_in_sec` int(11) NOT NULL,
+  `byte_out_sec` int(11) NOT NULL,
+  `in_byte_errors` int(11) DEFAULT NULL,
+  `out_byte_errors` int(11) DEFAULT NULL,
+  `cpu` tinyint(3) unsigned NOT NULL,
+  `giorno` varchar(2) NOT NULL,
+  `mese` varchar(4) NOT NULL,
+  `anno` varchar(4) NOT NULL,
+  `ora` varchar(8) NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=9095 DEFAULT CHARSET=latin1;
+
+--------------------------------------------------------------------------
+ Per Creare la tabella nodi
+--------------------------------------------------------------------------
+CREATE TABLE `nodi` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(20) NOT NULL,
+  `location` varchar(30) DEFAULT NULL,
+  `ip_wifi` char(15) NOT NULL,
+  `ip_man` char(15) NOT NULL,
+  `contatto` varchar(50) NOT NULL,
+  `creato` varchar(20) NOT NULL,
+  `interface` varchar(4) NOT NULL,
+  `index_if` varchar(2) DEFAULT NULL,
+  `attivo` tinyint(1) NOT NULL DEFAULT '0',
+  `registrato` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
+
+--------------------------------------------------------------------------
+ Per Creare la tabella servizi
+--------------------------------------------------------------------------
+CREATE TABLE `servizi` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `id_nodo` int(11) NOT NULL,
+  `ip` char(15) NOT NULL,
+  `porta` varchar(5) NOT NULL,
+  `descrizione` varchar(50) NOT NULL,
+  `attivo` tinyint(1) NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+
+
+
+
