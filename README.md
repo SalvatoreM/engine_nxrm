@@ -23,14 +23,14 @@ Ubiquity.
    	e password nelle rispettive variabili "user" "password".(default "ninux" "ninux")
 	Viene creato un file "diario.log" i cui record riportano in forma testuale i dati rilevati.
 	
- - Progetto per la rappresentazione dei dati WEB based (risiede un altro repository)
+ - Progetto per la rappresentazione dei dati WEB based 
  
-	I files di questo gruppo risiedono nella cartela WWW (altro repository) e sono degli script in PHP
-	e codice HTML. In questa cartella sono anche presenti due pacchetti 
+	I files di questo gruppo risiedono nel repository					    [https://github.com/SalvatoreM/www_nxrm.git](https://github.com/SalvatoreM/www_nxrm.git)
+	sono degli script in PHP e codice HTML. In questa cartella sono anche presenti due pacchetti 
 	per la generazione dei grafici e un altro per la statistica delle visite al sito.
  	Ambedue i pacchetti sono Open Source e liberamente scaricabili da
 	[http://en.christosoft.de/ ](http://en.christosoft.de/) e
-	[http://naku.dohcrew.com/libchart/pages/introduction/ ](http://naku.dohcrew.com/libchart/pages/introduction/).
+	[http://naku.dohcrew.com/libchart/pages/introduction/](http://naku.dohcrew.com/libchart/pages/introduction/).
 	La serie dei file consente la piena gestione del sito.
 	La sola configurazione richiesta per rendere operativo il sito  è quella di 
 	aggiornare, nel file "libreria.php", l'indirizzo dello host su cui risiede MySQL server.
