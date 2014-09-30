@@ -224,7 +224,8 @@ class NODO(logger):
 		r = string.split(res,"\n")
 #---------------------------------------------------------------------------------------------------------
 #		r=result.readlines()
-		if (len(r)):
+#		print r
+		if (len(r) >= 3):
 			bo = string.split(r[0],": ")[1].strip("\n")
 			bi = string.split(r[1],": ")[1].strip("\n")
 			t = string.split(r[2]," (")[1]
