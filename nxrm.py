@@ -30,10 +30,11 @@ class logger():
 		if (not os.path.isfile(self.path+self.name)):
 			dfile = open (self.path+self.name,"w")
 			dfile.write ("Nuovo File del "+time.strftime("%c")+"\n")
-			dfile.close				
-
+			dfile.close
+				
 
 	def event_log(self,message):
+#		print time.strftime("%H:%M")
 #		print self.path+self.name
 		dfile = open (self.path+self.name,"a")
 #		print message
@@ -42,11 +43,11 @@ class logger():
 		self.archive()
 
 	def archive(self):
-		if (time.strftime("%H:%M%")=="00:00"):
+		if (time.strftime("%H:%M") =="00:07"):
 			if (not self.reg):
-				os.system ("mv "+self.path+self.name+" "+self.path+time.strftime("%c")+self.name)
+				os.system ("mv "+self.path+self.name+" "+self.path+time.strftime("%H:%M-%a-%b-%d-%Y")+self.name)
 				self.reg=True
-		elif (time.strftime("%H:%M%") > "00:30"):
+		elif (time.strftime("%H:%M") > "00:30"):
 			if (self.reg):
 				self.reg=False
 
@@ -64,7 +65,7 @@ class logger():
 # e considerato non attivo.
 #
 #============================================================================
-class NODO(logger):
+class NODO():
 #============================================================================
 # Inizializzazione Nodo:
 # nodo_ref = Dizionario che descrive il nodo. Le chiavi sono i nomi delle colonne 
@@ -218,7 +219,8 @@ class NODO(logger):
 	def  get_data(self):
 #		result = os.popen("snmpget -t 2 -c public -v1 "+self.me["ip_man"]+" IF-MIB::ifOutOctets."+self.me["index_if"]+" IF-MIB::ifInOctets."+self.me["index_if"]+"  DISMAN-EVENT-MIB::sysUpTimeInstance")
 #---------------------------------------------------------------------------------------------------------
-		cmd = "snmpget -t 2 -c public -v1 "+self.me["ip_man"]+" IF-MIB::ifOutOctets."+self.me["index_if"]+" IF-MIB::ifInOctets."+self.me["index_if"]+"  DISMAN-EVENT-MIB::sysUpTimeInstance"
+		cmd = "snmpget -t 2 -c public -v1 "+self.me["ip_man"]+" IF-MIB::ifOutOctets."+self.me["index_if"]
+		cmd=cmd+" IF-MIB::ifInOctets."+self.me["index_if"]+"  DISMAN-EVENT-MIB::sysUpTimeInstance"
 		p = Popen(cmd, shell=True, stdin=PIPE, stdout=PIPE, stderr=PIPE, close_fds=True)
 		res = p.stdout.read()
 		r = string.split(res,"\n")
@@ -233,6 +235,10 @@ class NODO(logger):
 			if (int(t)-self.tic):
 				self.bout=(float(bo)-self.byte_out)*100/(int(t)-self.tic )
 				self.bin=(float(bi)-self.byte_in)*100/(int(t)-self.tic )
+			if (self.bout <0):
+				self.bout=0
+			if (self.bin <0):
+				self.bin=0
 			self.tic=int(t)
 			self.byte_out=float(bo)
 			self.byte_in=float(bi)
@@ -269,7 +275,10 @@ class NODO(logger):
 # Salva i dati acquisiti nel DB MySQL : tabella "dati"
 #============================================================================
 	def save_data(self,debug=0):
-		t=string.split(time.strftime("%c")," ")
+#		t=string.split(time.strftime("%c")," ")
+		t=string.split(time.strftime("%a %b %d %H:%M:%S %Y")," ")
+#		print time.strftime("%a %b %d %H:%M:%S %Y")
+#		print t[0],t[1],t[2],t[3],t[4]
 		giorno=t[2]
 		mese=t[1]
 		anno=t[4]
