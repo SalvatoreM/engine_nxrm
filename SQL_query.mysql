@@ -1,5 +1,5 @@
 ---------------------------------------------------------------------------
-Per crare il DataBase
+Per Creare il DataBase
 ---------------------------------------------------------------------------
 CREATE DATABASE `ninux_rate` /*!40100 DEFAULT CHARACTER SET latin1 */;
 
