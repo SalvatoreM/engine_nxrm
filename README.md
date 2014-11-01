@@ -22,6 +22,7 @@ Ubiquity.
 	l'accesso al DataBase. (variabile DatBaseHost='xxx.xxx.xxx.xx) Inoltre devono essere definiti  che utente
    	e password nelle rispettive variabili "user" "password".(default "ninux" "ninux")
 	Viene creato un file "diario.log" i cui record riportano in forma testuale i dati rilevati.
+	Creare il file mail_account come da example_mail_account
 	
  - Progetto per la rappresentazione dei dati WEB based 
  
