@@ -10,11 +10,11 @@ CREATE TABLE `dati` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `id_nodo` int(11) NOT NULL,
   `interface` varchar(4) NOT NULL,
-  `byte_in` int(20) NOT NULL,
-  `byte_out` int(20) NOT NULL,
+  `byte_in` bigint(20) NOT NULL,
+  `byte_out` bigint(20) NOT NULL,
   `tic_time` bigint(20) NOT NULL,
-  `byte_in_sec` int(11) NOT NULL,
-  `byte_out_sec` int(11) NOT NULL,
+  `byte_in_sec` int(20) NOT NULL,
+  `byte_out_sec` int(20) NOT NULL,
   `in_byte_errors` int(11) DEFAULT NULL,
   `out_byte_errors` int(11) DEFAULT NULL,
   `cpu` tinyint(3) unsigned NOT NULL,
@@ -22,15 +22,16 @@ CREATE TABLE `dati` (
   `mese` varchar(4) NOT NULL,
   `anno` varchar(4) NOT NULL,
   `ora` varchar(8) NOT NULL,
+  `sequence` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `totaL_time` int(10) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=9095 DEFAULT CHARSET=latin1;
-
+) ENGINE=MyISAM AUTO_INCREMENT=199713 DEFAULT CHARSET=latin1;
 --------------------------------------------------------------------------
  Per Creare la tabella nodi
 --------------------------------------------------------------------------
 CREATE TABLE `nodi` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `nome` varchar(20) NOT NULL,
+  `nome` varchar(30) NOT NULL,
   `location` varchar(30) DEFAULT NULL,
   `ip_wifi` char(15) NOT NULL,
   `ip_man` char(15) NOT NULL,
@@ -40,8 +41,10 @@ CREATE TABLE `nodi` (
   `index_if` varchar(2) DEFAULT NULL,
   `attivo` tinyint(1) NOT NULL DEFAULT '0',
   `registrato` tinyint(1) NOT NULL DEFAULT '0',
+  `mail` varchar(4) DEFAULT NULL,
+  `contattomail` varchar(50) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
 
 --------------------------------------------------------------------------
  Per Creare la tabella servizi
@@ -56,7 +59,23 @@ CREATE TABLE `servizi` (
   PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
-
+--------------------------------------------------------------------------
+ Per Creare la tabella report
+--------------------------------------------------------------------------
+CREATE TABLE `report` (
+  `ID` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `byte_in` int(20) unsigned DEFAULT NULL,
+  `byte_out` int(20) unsigned DEFAULT NULL,
+  `activity` int(3) unsigned DEFAULT NULL,
+  `total_act` int(20) unsigned DEFAULT NULL,
+  `total_noact` int(20) unsigned DEFAULT NULL,
+  `status` varchar(10) DEFAULT NULL,
+  `id_nodo` int(11) unsigned DEFAULT NULL,
+  `giorno` varchar(2) CHARACTER SET latin1 COLLATE latin1_bin DEFAULT NULL,
+  `mese` varchar(4) DEFAULT NULL,
+  `anno` varchar(4) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=271 DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
 
 
 
